@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  app:
+    env_file: .env
+    build: 
+      context: .
+      args: 
+        GITHUB_ACCESS_TOKEN: ${GITHUB_ACCESS_TOKEN}
+        GITHUB_BRANCH: ${GITHUB_BRANCH}
+        PATH_PREFIX: ${PATH_PREFIX}
+        HOST: ${HOST}
+        PORT: ${PORT}
+        GOOGLE_ANALYTICS_ID: ${GOOGLE_ANALYTICS_ID}
+        PWA_APP_NAME: ${PWA_APP_NAME}
+        APP_NAME: ${APP_NAME}
+        API_BASEURL: ${API_BASEURL}
+        EMPLOYER_LOGIN_URL: ${EMPLOYER_LOGIN_URL}
+    container_name: mystep-frontend
+    ports:
+      - '${PORT}:${PORT}'
+    command: >
+      sh -c 'date && npm run start'
